@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Signatur-Vorschau</h1>
+
+<form method="get" action="/preview" class="preview-form">
+    <label for="email">E-Mail-Adresse (Graph-Lookup):</label>
+    <input type="email" id="email" name="email" value="{{ email }}" placeholder="user@domain.com">
+    <button type="submit" class="btn primary">Vorschau laden</button>
+</form>
+
+{% if error %}
+<div class="alert error">Graph-Fehler: {{ error }}</div>
+{% endif %}
+
+{% if sig_html %}
+<h2>HTML-Signatur</h2>
+<div class="preview-frame">{{ sig_html | safe }}</div>
+<h3>HTML-Quelltext</h3>
+<pre class="code-block">{{ sig_html }}</pre>
+{% elif email %}
+<div class="alert warn">Keine HTML-Signatur generiert (Template leer oder nicht vorhanden).</div>
+{% endif %}
+
+{% if sig_txt %}
+<h2>Plaintext-Signatur</h2>
+<pre class="code-block">{{ sig_txt }}</pre>
+{% endif %}
+{% endblock %}

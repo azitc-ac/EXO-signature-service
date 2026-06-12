@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Dashboard</h1>
+<div class="stats-grid">
+    <div class="stat-card">
+        <div class="stat-value">{{ stats.processed }}</div>
+        <div class="stat-label">Mails verarbeitet</div>
+    </div>
+    <div class="stat-card warn">
+        <div class="stat-value">{{ stats.fallback }}</div>
+        <div class="stat-label">Fallback (ohne Signatur)</div>
+    </div>
+    <div class="stat-card error">
+        <div class="stat-value">{{ stats.errors }}</div>
+        <div class="stat-label">Fehler</div>
+    </div>
+</div>
+<p class="hint">Zähler werden bei Container-Neustart zurückgesetzt.</p>
+{% endblock %}

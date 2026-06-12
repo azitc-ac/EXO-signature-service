@@ -1,0 +1,8 @@
+.env
+certs/
+templates/signature.html
+templates/signature.txt
+__pycache__/
+*.pyc
+*.pyo
+.pytest_cache/

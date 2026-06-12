@@ -1,0 +1,31 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Template-Editor</h1>
+
+{% if saved %}
+<div class="alert success">Templates gespeichert.</div>
+{% endif %}
+
+<form method="post" action="/template">
+    <div class="editor-section">
+        <label for="html_content"><strong>HTML-Signatur</strong> (Jinja2)</label>
+        <textarea id="html_content" name="html_content" rows="20" spellcheck="false">{{ html_content }}</textarea>
+    </div>
+    <div class="editor-section">
+        <label for="txt_content"><strong>Plaintext-Signatur</strong> (Jinja2)</label>
+        <textarea id="txt_content" name="txt_content" rows="8" spellcheck="false">{{ txt_content }}</textarea>
+    </div>
+    <div class="actions">
+        <button type="submit" class="btn primary">Speichern</button>
+        <a href="/preview" class="btn secondary">Vorschau</a>
+    </div>
+</form>
+
+<div class="hint">
+    <strong>Verfügbare Variablen:</strong>
+    <code>user.displayName</code>, <code>user.jobTitle</code>, <code>user.department</code>,
+    <code>user.companyName</code>, <code>user.mail</code>, <code>user.phone</code>,
+    <code>user.mobilePhone</code>, <code>user.officeLocation</code>,
+    <code>user.website</code>, <code>user.bookingsUrl</code>
+</div>
+{% endblock %}

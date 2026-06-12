@@ -1,0 +1,18 @@
+{% extends "base.html" %}
+{% block content %}
+<h1>Konfiguration</h1>
+<p class="hint">Secrets werden nicht angezeigt. Alle Werte aus Umgebungsvariablen.</p>
+<table class="config-table">
+    <thead>
+        <tr><th>Variable</th><th>Wert</th></tr>
+    </thead>
+    <tbody>
+        {% for key, val in cfg.items() %}
+        <tr>
+            <td><code>{{ key }}</code></td>
+            <td>{{ val }}</td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}

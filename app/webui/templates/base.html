@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EXO Signature Service</title>
+    <link rel="stylesheet" href="/static/style.css">
+</head>
+<body>
+    <nav>
+        <div class="nav-brand">EXO Signature Service</div>
+        <ul>
+            <li><a href="/" class="{% if active == 'dashboard' %}active{% endif %}">Dashboard</a></li>
+            <li><a href="/template" class="{% if active == 'template' %}active{% endif %}">Templates</a></li>
+            <li><a href="/preview" class="{% if active == 'preview' %}active{% endif %}">Vorschau</a></li>
+            <li><a href="/config-view" class="{% if active == 'config' %}active{% endif %}">Konfiguration</a></li>
+        </ul>
+    </nav>
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+</body>
+</html>

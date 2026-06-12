@@ -1,0 +1,34 @@
+version: "3.9"
+
+services:
+  signature-service:
+    build: .
+    image: exo-signature-service:latest
+    container_name: exo-signature-service
+    restart: unless-stopped
+    ports:
+      - "587:587"
+      - "8080:8080"
+    volumes:
+      - ./templates:/app/templates
+      - ./certs:/app/certs:ro
+    environment:
+      # Azure AD / MS Graph
+      TENANT_ID: ${TENANT_ID}
+      CLIENT_ID: ${CLIENT_ID}
+      CLIENT_SECRET: ${CLIENT_SECRET}
+      # EXO Re-Inject
+      EXO_SMARTHOST: ${EXO_SMARTHOST}
+      EXO_PORT: ${EXO_PORT:-587}
+      # SMTP Listener
+      SMTP_PORT: 587
+      SMTP_TLS_CERT: /app/certs/cert.pem
+      SMTP_TLS_KEY: /app/certs/key.pem
+      # Web UI
+      WEBUI_PORT: 8080
+      WEBUI_SECRET_KEY: ${WEBUI_SECRET_KEY}
+      WEBUI_USERNAME: ${WEBUI_USERNAME:-admin}
+      WEBUI_PASSWORD: ${WEBUI_PASSWORD}
+      # Behaviour
+      FALLBACK_ON_ERROR: ${FALLBACK_ON_ERROR:-true}
+      LOG_LEVEL: ${LOG_LEVEL:-INFO}
